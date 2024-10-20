@@ -24,7 +24,7 @@ jobs:
           working-directory: backend
           github-token: ${{ secrets.GH_TOKEN }}
 
-      - name: Release That
-        uses: rlespinasse/release-that@working-directory
-        with:
-          github-token: ${{ secrets.GH_TOKEN }}
+      #- name: Release That
+      #  uses: rlespinasse/release-that@working-directory
+      #  with:
+      #    github-token: ${{ secrets.GH_TOKEN }}
