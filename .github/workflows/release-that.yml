@@ -14,3 +14,10 @@ jobs:
 
       - name: Release That
         uses: rlespinasse/release-that@working-directory
+        with:
+          working-directory: frontend
+
+      - name: Release That
+        uses: rlespinasse/release-that@working-directory
+        with:
+          working-directory: backend
