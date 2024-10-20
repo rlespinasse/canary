@@ -1,1 +1,1 @@
-some changes and some others
+somes changes and some
