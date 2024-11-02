@@ -18,14 +18,12 @@ jobs:
         uses: rlespinasse/release-that@working-directory
         with:
           working-directory: frontend
-          dry-run: true
           github-token: ${{ secrets.GH_TOKEN }}
 
       - name: Release That Backend
         uses: rlespinasse/release-that@working-directory
         with:
           working-directory: backend
-          dry-run: true
           github-token: ${{ secrets.GH_TOKEN }}
 
       #- name: Release That
