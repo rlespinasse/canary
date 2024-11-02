@@ -1,1 +1,1 @@
-changes and some other things..
+some changes and some other things
