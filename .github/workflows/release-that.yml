@@ -12,7 +12,14 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v4
         
-      - uses: rlespinasse/github-slug-action@v4
+      - uses: rlespinasse/github-slug-action@v5.x
+      - name: Print slug variables
+        run: |
+          echo "Repository: ${{ env.GITHUB_REPOSITORY_SLUG }}"
+          echo "Branch Name: ${{ env.GITHUB_REF_NAME }}"
+          echo "Branch Ref: ${{ env.GITHUB_REF_SLUG }}"
+          echo "SHA: ${{ env.GITHUB_SHA_SHORT }}"
+        shell: bash
 
       - name: Release That Frontend
         uses: rlespinasse/release-that@working-directory
