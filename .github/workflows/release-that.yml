@@ -13,6 +13,9 @@ jobs:
         uses: actions/checkout@v4
         
       - uses: rlespinasse/github-slug-action@v5.x
+        env:
+          ACTIONS_STEP_DEBUG: true
+
       - name: Print slug variables
         run: |
           echo "Repository: ${{ env.GITHUB_REPOSITORY_SLUG }}"
