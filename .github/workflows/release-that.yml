@@ -12,14 +12,13 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v4
         
-      - uses: rlespinasse/github-slug-action@v5.x
-        env:
-          ACTIONS_STEP_DEBUG: true
+      - uses: rlespinasse/github-slug-action@github-ref-point
 
       - name: Print slug variables
         run: |
           echo "Repository: ${{ env.GITHUB_REPOSITORY_SLUG }}"
           echo "Branch Name: ${{ env.GITHUB_REF_NAME }}"
+          echo "Branch Point: ${{ env.GITHUB_REF_POINT }}"
           echo "Branch Ref: ${{ env.GITHUB_REF_SLUG }}"
           echo "SHA: ${{ env.GITHUB_SHA_SHORT }}"
         shell: bash
