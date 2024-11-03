@@ -1,5 +1,5 @@
 name: Release that
-on: [push]
+on: [pull_request]
 jobs:
   release-that:
     runs-on: ubuntu-latest
