@@ -11,30 +11,45 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
+
+      - name: Print before
+        run: |
+          echo "github.ref_name=${{ github.ref_name }}"
+          echo "env.GITHUB_REF_NAME=${{ env.GITHUB_REF_NAME }}"
+          echo "env.GITHUB_REF_POINT=${{ env.GITHUB_REF_POINT }}"
+
+          echo "github.ref=${{ github.ref }}"
+          echo "env.GITHUB_REF=${{ env.GITHUB_REF }}"
+
+          echo "github.head_ref=${{ github.head_ref }}"
+          echo "env.GITHUB_HEAD_REF=${{ env.GITHUB_HEAD_REF }}"
+        shell: bash
         
       - uses: rlespinasse/github-slug-action@github-ref-point
 
-      - name: Print slug variables
+      - name: Print After
         run: |
-          echo "Repository: ${{ env.GITHUB_REPOSITORY_SLUG }}"
-          echo "Branch Name: ${{ env.GITHUB_REF_NAME }}"
-          echo "Branch Point: ${{ env.GITHUB_REF_POINT }}"
-          echo "Branch Ref: ${{ env.GITHUB_REF_SLUG }}"
-          echo "SHA: ${{ env.GITHUB_SHA_SHORT }}"
+          echo "github.ref_name=${{ github.ref_name }}"
+          echo "env.GITHUB_REF_NAME=${{ env.GITHUB_REF_NAME }}"
+          echo "env.GITHUB_REF_POINT=${{ env.GITHUB_REF_POINT }}"
+
+          echo "github.ref=${{ github.ref }}"
+          echo "env.GITHUB_REF=${{ env.GITHUB_REF }}"
+
+          echo "github.head_ref=${{ github.head_ref }}"
+          echo "env.GITHUB_HEAD_REF=${{ env.GITHUB_HEAD_REF }}"
         shell: bash
 
-      - name: Release That Frontend
-        uses: rlespinasse/release-that@working-directory
-        with:
-          working-directory: frontend
-          github-token: ${{ secrets.GH_TOKEN }}
-
-      - name: Release That Backend
-        uses: rlespinasse/release-that@working-directory
-        with:
-          working-directory: backend
-          github-token: ${{ secrets.GH_TOKEN }}
-
+      #- name: Release That Frontend
+      #  uses: rlespinasse/release-that@working-directory
+      #  with:
+      #    working-directory: frontend
+      #    github-token: ${{ secrets.GH_TOKEN }}
+      #- name: Release That Backend
+      #  uses: rlespinasse/release-that@working-directory
+      #  with:
+      #    working-directory: backend
+      #    github-token: ${{ secrets.GH_TOKEN }}
       #- name: Release That
       #  uses: rlespinasse/release-that@working-directory
       #  with:
