@@ -1,0 +1,24 @@
+name: test slug
+on: [push]
+jobs:
+  test-slug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+        
+      - uses: rlespinasse/github-slug-action@v5
+        env:
+          ACTIONS_STEP_DEBUG: true
+
+      - uses: rlespinasse/slugify-value@v1
+        with:
+          key: KEY_NAME
+          value: value_to_slugify
+          publish-env: true
+
+      - uses: rlespinasse/slugify-value@v1
+        with:
+          key: KEY2_NAME
+          value: value2_to_slugify
+          publish-env: false
