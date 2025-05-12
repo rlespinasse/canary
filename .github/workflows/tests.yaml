@@ -1,45 +1,58 @@
-name: test slug
+name: Test Env Behavior
 on: [push]
 jobs:
-  test-slug:
+  env-behavior-with-slugify-value-used-multiple-times:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout sources
-        uses: actions/checkout@v4
-        
-      - uses: rlespinasse/github-slug-action@v5
-        env:
-          ACTIONS_STEP_DEBUG: true
-
-      - uses: rlespinasse/slugify-value@v1
+      - name: use slugify-value with publish-env=true
+        uses: rlespinasse/slugify-value@v1
         with:
-          key: KEY_NAME
-          value: value_to_slugify
+          key: PUBLISHED_KEY_NAME
+          value: PUBLISHED_VALUE
           publish-env: true
-
-      - uses: rlespinasse/slugify-value@v1
+          
+      - name: use slugify-value with publish-env=true
+        uses: rlespinasse/slugify-value@v1
         with:
-          key: KEY2_NAME
-          value: value2_to_slugify
-          publish-env: false
-
-  test2-slug:
+          key: ANOTHER_PUBLISHED_KEY_NAME
+          value: ANOTHER_PUBLISHED_VALUE
+          publish-env: true
+          
+  env-behavior:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout sources
-        uses: actions/checkout@v4
-
-      - run: echo "SOME_ENV_KEY=SOME_MANUAL_VALUE" >> "$GITHUB_ENV"
+      - name: Manually set up some custom env var
+        run: echo "SOME_ENV_KEY=SOME_ENV_VALUE" >> "$GITHUB_ENV"
         shell: bash
 
-      - uses: rlespinasse/slugify-value@v1
-        with:
-          key: KEY_NAME
-          value: value_to_slugify
-          publish-env: false
+      - name: Another manually set up some custom env var
+        run: echo "ANOTHER_ENV_KEY=ANOTHER_ENV_VALUE" >> "$GITHUB_ENV"
+        shell: bash
 
-      - uses: rlespinasse/slugify-value@v1
+  env-behavior-with-slugify-value-using-publish-env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Manually set up some custom env var
+        run: echo "SOME_ENV_KEY=SOME_ENV_VALUE" >> "$GITHUB_ENV"
+        shell: bash
+
+      - name: use slugify-value with publish-env=true
+        uses: rlespinasse/slugify-value@v1
         with:
-          key: KEY2_NAME
-          value: value2_to_slugify
+          key: PUBLISHED_KEY_NAME
+          value: PUBLISHED_VALUE
           publish-env: true
+
+  env-behavior-with-slugify-value:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Manually set up some custom env var
+        run: echo "SOME_ENV_KEY=SOME_ENV_VALUE" >> "$GITHUB_ENV"
+        shell: bash
+
+      - name: use slugify-value with publish-env=false
+        uses: rlespinasse/slugify-value@v1
+        with:
+          key: PUBLISHED_KEY_NAME
+          value: PUBLISHED_VALUE
+          publish-env: false
