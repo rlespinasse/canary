@@ -22,3 +22,24 @@ jobs:
           key: KEY2_NAME
           value: value2_to_slugify
           publish-env: false
+
+  test2-slug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - run: echo "SOME_MANUAL_VALUE" >> "$GITHUB_ENV"
+        shell: bash
+
+      - uses: rlespinasse/slugify-value@v1
+        with:
+          key: KEY_NAME
+          value: value_to_slugify
+          publish-env: false
+
+      - uses: rlespinasse/slugify-value@v1
+        with:
+          key: KEY2_NAME
+          value: value2_to_slugify
+          publish-env: true
